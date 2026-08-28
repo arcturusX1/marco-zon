@@ -37,6 +37,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "c3c7dece-83d7-4941-b483-e6b3eb087d66"
+      }
+    },
+    "owner": "arcturusx1s-team"
   }
 }
