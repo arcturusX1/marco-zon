@@ -1,29 +1,16 @@
-import { Link } from 'expo-router';
-import { ScrollView, Text } from 'react-native';
+import MacroGrid from '@/components/MacroGrid';
+import RecentMeals from '@/components/RecentMeals';
 import { globalStyles } from '@/styles/global';
-// importing deafult exports need no braces
-import HomeHeader from '@/components/HomeHeader';
+import { ScrollView, Text } from 'react-native';
+import HomeHeader from '../../components/HomeHeader';
 
 export default function HomeScreen() {
   return (
     <ScrollView style={globalStyles.container}>
-      <Text style={globalStyles.title}>MarcoZon</Text>
-    
-      <HomeHeader/>
-    
-      <Link href="/meals" style={
-        {fontSize: 18, 
-        color: '#007bff'}
-        }>Meals
-      </Link>
-      
-      <Link href="/add-meals" style={
-        {fontSize: 18, 
-        color: '#007bff'}
-        }>Add New Meals
-      </Link>
-    
+      <Text style={globalStyles.title}>MacroZone</Text>
+      <HomeHeader />
+      <MacroGrid />
+      <RecentMeals/>
     </ScrollView>
   );
 }
-
