@@ -1,7 +1,8 @@
 import { deleteMeal } from '@/storage/meals';
 import { colors } from '@/styles/global';
+import * as Haptics from 'expo-haptics';
 import { Alert, StyleSheet, Text, TouchableOpacity } from 'react-native';
-
+import Toast from 'react-native-toast-message';
 type MealItemProps = {
   id: string;
   name: string;
@@ -29,7 +30,13 @@ export default function MealItem({
         style: 'destructive',
         onPress: async () => {
           await deleteMeal(id);
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           onDelete();
+          Toast.show({
+            type: 'success',
+            text1: 'Meal Deleted',
+            text2: `${name} has been removed.`,
+          });
         },
       },
     ]);
