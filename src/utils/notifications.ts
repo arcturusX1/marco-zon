@@ -46,3 +46,28 @@ export const scheduleMealReminders = async () => {
 export const cancelMealReminders = async () => {
   await Notifications.cancelAllScheduledNotificationsAsync();
 };
+
+/**
+ * Dev helper: fires a one-off notification after a few seconds so the
+ * reminder copy/permissions/handler can be verified without waiting for
+ * the 12:00 / 18:00 daily triggers.
+ */
+export const sendTestReminder = async (seconds = 5) => {
+  const granted = await requestPermissions();
+  if (!granted) return null;
+
+  return Notifications.scheduleNotificationAsync({
+    content: {
+      title: 'MarcoZon',
+      body: "Don't forget to log your lunch!",
+    },
+    trigger: {
+      type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+      seconds,
+    },
+  });
+};
+
+/** Dev helper: what is actually queued on the device right now. */
+export const getScheduledReminders = () =>
+  Notifications.getAllScheduledNotificationsAsync();
